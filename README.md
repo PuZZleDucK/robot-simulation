@@ -61,8 +61,8 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
         - [x] MOVE will move the robot one step forward, in whichever direction it is currently facing
         - [ ] is allowed to move freely on the grid within its limits. - need turn to test full field moves.
         - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
-    - [ ] LEFT and RIGHT
-        - [ ] LEFT and RIGHT respectfully turn the robot 90° angle to the left or to the right.
+    - [x] LEFT and RIGHT
+        - [x] LEFT and RIGHT respectfully turn the robot 90° angle to the left or to the right.
     - [ ] REPORT
         - [ ] REPORT announces the position and orientation (X, Y, O) in any format (eg std out)
     - [ ] Commands are to be ignored until a valid PLACE command is issued

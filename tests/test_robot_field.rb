@@ -184,4 +184,42 @@ describe RobotField do
       _(subject.dir).must_equal :e
     end
   end
+
+  describe 'LEFT and RIGHT' do
+    it 'turn left from bottom left facing north faces west and rotates around compass' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :n])
+      subject.simulate(:left)
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :w
+
+      subject.simulate(:left)
+      _(subject.dir).must_equal :s
+
+      subject.simulate(:left)
+      _(subject.dir).must_equal :e
+
+      subject.simulate(:left)
+      _(subject.dir).must_equal :n
+    end
+
+    it 'turn right from bottom left facing north faces east and rotates around compass' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :n])
+      subject.simulate(:right)
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :e
+
+      subject.simulate(:right)
+      _(subject.dir).must_equal :s
+
+      subject.simulate(:right)
+      _(subject.dir).must_equal :w
+
+      subject.simulate(:right)
+      _(subject.dir).must_equal :n
+    end
+  end
 end

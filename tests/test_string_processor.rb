@@ -67,4 +67,17 @@ describe StringProcessor do
       _(StringProcessor.parse('MOVE')).must_equal :move
     end
   end
+
+  describe 'LEFT' do
+    it 'Parses LEFT to :left' do
+      _(StringProcessor.parse('LEFT')).must_equal :left
+    end
+  end
+
+  describe 'RIGHT' do
+    it 'Parses RIGHT to :right' do
+      _(StringProcessor.parse('RIGHT')).must_equal :right
+    end
+  end
+
 end

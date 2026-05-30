@@ -14,13 +14,15 @@ class StringProcessor
     command = case components[0]
               when 'MOVE'
                 :move
+              when 'LEFT'
+                :left
+              when 'RIGHT'
+                :right
               when 'PLACE'
                 hori = safe_to_i(components[1])
                 vert = safe_to_i(components[2])
                 dir = DIRECTIONS[components[3]]
-                return :nop if [hori.nil?, vert.nil?, !dir.is_a?(Symbol)].any?
-
-                [:place, hori, vert, dir]
+                [:place, hori, vert, dir] unless [hori.nil?, vert.nil?, !dir.is_a?(Symbol)].any?
               end
     command || :nop
   end

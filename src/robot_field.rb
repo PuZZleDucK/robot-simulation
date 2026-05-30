@@ -22,6 +22,10 @@ class RobotField
     case command
     when :move
       move
+    when :left
+      left
+    when :right
+      right
     else
       place(command) if command[0] == :place
     end
@@ -51,5 +55,13 @@ class RobotField
     when :w
       @hori -= 1 if hori.positive?
     end
+  end
+
+  def left
+    @dir = DIRECTIONS.key((DIRECTIONS[dir] - 1) % 4)
+  end
+
+  def right
+    @dir = DIRECTIONS.key((DIRECTIONS[dir] + 1) % 4)
   end
 end
