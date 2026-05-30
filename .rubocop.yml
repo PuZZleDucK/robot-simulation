@@ -7,6 +7,12 @@ AllCops:
 Layout/LineLength:
   Max: 99
 
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 15
+
 plugins:
   - rubocop-minitest
 

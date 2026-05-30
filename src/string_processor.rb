@@ -12,6 +12,8 @@ class StringProcessor
   def self.parse(string)
     components = string.split
     command = case components[0]
+              when 'MOVE'
+                :move
               when 'PLACE'
                 hori = safe_to_i(components[1])
                 vert = safe_to_i(components[2])

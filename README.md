@@ -57,10 +57,10 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
         - [x] First coordinate is along the East/West axis, the second coordinate is along the North/South axis.
         - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
         - [ ] test invalid PLACE commands before valid PLACE - ignore first
-    - [ ] MOVE
-        - [ ] MOVE will move the robot one step forward, in whichever direction it is currently facing
-        - [ ] is allowed to move freely on the grid within its limits.
-        - [ ] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
+    - [x] MOVE
+        - [x] MOVE will move the robot one step forward, in whichever direction it is currently facing
+        - [ ] is allowed to move freely on the grid within its limits. - need turn to test full field moves.
+        - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
     - [ ] LEFT and RIGHT
         - [ ] LEFT and RIGHT respectfully turn the robot 90° angle to the left or to the right.
     - [ ] REPORT

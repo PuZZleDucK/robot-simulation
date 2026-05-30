@@ -13,6 +13,5 @@ detectors:
     exclude:
       - "RobotField#simulate"
 
-
 exclude_paths:
   - tests/

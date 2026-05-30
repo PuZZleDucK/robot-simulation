@@ -110,4 +110,78 @@ describe RobotField do
       assert_nil(subject.dir)
     end    
   end
+
+  describe 'MOVE' do
+    it 'move from bottom left facing north moves up' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :n])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 1
+      _(subject.dir).must_equal :n
+    end    
+
+    it 'move from bottom left facing east moves right' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :e])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 1
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :e
+    end    
+
+    it 'move from top right facing south moves down' do
+      subject = RobotField.new
+      subject.simulate([:place, 5, 5, :s])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 5
+      _(subject.vert).must_equal 4
+      _(subject.dir).must_equal :s
+    end    
+
+    it 'move from top right facing west moves left' do
+      subject = RobotField.new
+      subject.simulate([:place, 5, 5, :w])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 4
+      _(subject.vert).must_equal 5
+      _(subject.dir).must_equal :w
+    end    
+
+    it 'move from bottom left facing south does not move' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :s])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :s
+    end    
+
+    it 'move from bottom left facing west does not move' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :w])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :w
+    end    
+
+    it 'move from top right facing north does not move' do
+      subject = RobotField.new
+      subject.simulate([:place, 5, 5, :n])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 5
+      _(subject.vert).must_equal 5
+      _(subject.dir).must_equal :n
+    end    
+
+    it 'move from top right facing east does not move' do
+      subject = RobotField.new
+      subject.simulate([:place, 5, 5, :e])
+      subject.simulate(:move)
+      _(subject.hori).must_equal 5
+      _(subject.vert).must_equal 5
+      _(subject.dir).must_equal :e
+    end
+  end
 end

@@ -21,7 +21,7 @@ class RobotField
 
     case command
     when :move
-      'todo'
+      move
     else
       place(command) if command[0] == :place
     end
@@ -38,5 +38,18 @@ class RobotField
     @hori = hori
     @vert = vert
     @dir = dir
+  end
+
+  def move
+    case dir
+    when :n
+      @vert += 1 if vert < (height - 1)
+    when :e
+      @hori += 1 if hori < (width - 1)
+    when :s
+      @vert -= 1 if vert.positive?
+    when :w
+      @hori -= 1 if hori.positive?
+    end
   end
 end

@@ -61,4 +61,10 @@ describe StringProcessor do
       _(StringProcessor.parse('RANDOM 22 33 AAA')).must_equal :nop
     end
   end
+
+  describe 'MOVE' do
+    it 'Parses MOVE to :move' do
+      _(StringProcessor.parse('MOVE')).must_equal :move
+    end
+  end
 end
