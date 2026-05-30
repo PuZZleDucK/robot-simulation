@@ -15,8 +15,8 @@ jobs:
         bundler-cache: true
     - name: Run Tests
       run: bundle exec minitest tests
-    - name: Rubocop
-      run: bundle exec rubocop
+    # - name: Rubocop
+    #   run: bundle exec rubocop
     - name: Bundler Audit
       run: bundle exec bundler-audit
     - name: Brakeman

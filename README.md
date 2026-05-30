@@ -110,3 +110,4 @@ bonuses are nice to haves and might be done after core project. extentions are n
 - allow lenient input mode (lowercase commands, other spacing)
 - allow alternate report formats? (compact, verbose, map)
 - invalid dir not explicitly addressed - consider invalid and nop
+- disabled rubocop in ci, taking a long time and getting odd output like "Inspecting 3393 files" and including a vendor dir
