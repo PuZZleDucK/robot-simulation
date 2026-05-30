@@ -6,6 +6,9 @@ detectors:
     enabled: false
   TooManyStatements:
     enabled: false
+  NilCheck:
+    exclude:
+      - "StringProcessor#self.parse"
   FeatureEnvy:
     exclude:
       - "RobotField#simulate"

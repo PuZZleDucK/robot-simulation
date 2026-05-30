@@ -44,5 +44,21 @@ describe StringProcessor do
     it 'Parse North with two large offsets' do
       _(StringProcessor.parse('PLACE 22 33 N')).must_equal [:place, 22, 33, :n]
     end
+
+    it 'Parse with invalid command gives nop' do
+      _(StringProcessor.parse('RANDOM 22 33 N')).must_equal :nop
+    end
+
+    it 'Parse with invalid hori gives nop' do
+      _(StringProcessor.parse('PLACE A 33 N')).must_equal :nop
+    end
+
+    it 'Parse with invalid vert gives nop' do
+      _(StringProcessor.parse('RANDOM 22 Z N')).must_equal :nop
+    end
+
+    it 'Parse with invalid dir gives nop' do
+      _(StringProcessor.parse('RANDOM 22 33 AAA')).must_equal :nop
+    end
   end
 end

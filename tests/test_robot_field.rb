@@ -69,5 +69,45 @@ describe RobotField do
       _(subject.vert).must_equal 2
       _(subject.dir).must_equal :s
     end
+
+    it 'invalid high hori place ignored' do
+      subject = RobotField.new
+      subject.simulate([:place, 6, 0, :n])
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+    end
+
+    it 'invalid low hori place ignored' do
+      subject = RobotField.new
+      subject.simulate([:place, -1, 0, :n])
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+    end
+
+    it 'invalid high vert place ignored' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 6, :n])
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+    end
+
+    it 'invalid low vert place ignored' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, -1, :n])
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+    end
+
+    it 'invalid dir ignored' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :z])
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+    end    
   end
 end

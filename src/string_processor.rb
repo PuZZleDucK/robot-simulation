@@ -13,12 +13,20 @@ class StringProcessor
     components = string.split
     command = case components[0]
               when 'PLACE'
-                hori = components[1].to_i
-                vert = components[2].to_i
+                hori = safe_to_i(components[1])
+                vert = safe_to_i(components[2])
                 dir = DIRECTIONS[components[3]]
-                [:place, hori, vert, dir] if hori.integer? && vert.integer? && dir.is_a?(Symbol)
+                return :nop if [hori.nil?, vert.nil?, !dir.is_a?(Symbol)].any?
+
+                [:place, hori, vert, dir]
               end
     command || :nop
+  end
+
+  def self.safe_to_i(value)
+    Integer(value)
+  rescue ArgumentError, TypeError
+    nil
   end
 end
 

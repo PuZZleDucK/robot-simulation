@@ -50,12 +50,12 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [x] modularize: input processing - board managment / robot moves - tui
 - [ ] simulation of a robot moving on a 6x6 square grid - no obstructions.
 - [ ] Create a command-line application that reads in the following commands:
-    - [ ] PLACE X, Y, O
+    - [x] PLACE X, Y, O
         - [x] PLACE X, Y, O will place the robot at position X, Y on the grid, with orientation O
         - [x] Orientations are N, E, S, W (for North, East, South and West)
         - [x] Position (0,0) on the grid is the south west (bottom left - inc up and inc right) corner
         - [x] First coordinate is along the East/West axis, the second coordinate is along the North/South axis.
-        - [ ] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
+        - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
         - [ ] test invalid PLACE commands before valid PLACE - ignore first
     - [ ] MOVE
         - [ ] MOVE will move the robot one step forward, in whichever direction it is currently facing
@@ -109,3 +109,4 @@ bonuses are nice to haves and might be done after core project. extentions are n
 - no examples cover a program with multiple report lines - allow and print one per line
 - allow lenient input mode (lowercase commands, other spacing)
 - allow alternate report formats? (compact, verbose, map)
+- invalid dir not explicitly addressed - consider invalid and nop
