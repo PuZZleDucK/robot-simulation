@@ -1,7 +1,7 @@
 name: Test and Package Robot
 on: [push, pull_request]
 jobs:
-  release:
+  test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -19,6 +19,14 @@ jobs:
       run: ruby -e 'puts "hi, one day im going to grow up into a real simulation of quality assurance"'
     - name: Run Minimum Stress Checks
       run: ruby -e 'puts "hi, one day im going to grow up into a real tiny stress test"'
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+    contents: write
+    steps:
+    - uses: actions/checkout@v6
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
