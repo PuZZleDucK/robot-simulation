@@ -51,10 +51,10 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [ ] simulation of a robot moving on a 6x6 square grid - no obstructions.
 - [ ] Create a command-line application that reads in the following commands:
     - [ ] PLACE X, Y, O
-        - [ ] PLACE X, Y, O will place the robot at position X, Y on the grid, with orientation O
-        - [ ] Orientations are N, E, S, W (for North, East, South and West)
-        - [ ] Position (0,0) on the grid is the south west (bottom left - inc up and inc right) corner
-        - [ ] First coordinate is along the East/West axis, the second coordinate is along the North/South axis.
+        - [x] PLACE X, Y, O will place the robot at position X, Y on the grid, with orientation O
+        - [x] Orientations are N, E, S, W (for North, East, South and West)
+        - [x] Position (0,0) on the grid is the south west (bottom left - inc up and inc right) corner
+        - [x] First coordinate is along the East/West axis, the second coordinate is along the North/South axis.
         - [ ] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
         - [ ] test invalid PLACE commands before valid PLACE - ignore first
     - [ ] MOVE

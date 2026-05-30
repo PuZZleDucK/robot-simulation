@@ -1,0 +1,15 @@
+
+detectors:
+  Attribute:
+    enabled: false
+  TooManyInstanceVariables:
+    enabled: false
+  TooManyStatements:
+    enabled: false
+  FeatureEnvy:
+    exclude:
+      - "RobotField#simulate"
+
+
+exclude_paths:
+  - tests/
