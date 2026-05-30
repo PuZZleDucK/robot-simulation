@@ -1,0 +1,10 @@
+
+AllCops:
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 99
+
+plugins:
+  - rubocop-minitest
+

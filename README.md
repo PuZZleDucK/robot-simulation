@@ -16,12 +16,19 @@ One other issue on which I'm torn is code review. I've been using AI to review e
 ## Setup
 - Developed and tested locally on ruby 3.2.3.
 - Supports ruby 3.2.x - 4.0.x based on ci coverage.
-- setup minitest
+- setup dependencies (minitest and qa tools)
   - `bundle install`
 
 ## Running
-- run specs
+- run specs and qa
   - `bundle exec minitest tests`
+  - `bundle exec rubocop --autocorrect`
+  - `bundle exec bundler-audit`
+  - `bundle exec brakeman . -A --no-pager --force`
+optional qa steps - run in ci as non-blocking reporting steps (would report back to PRs with comments in a full workflow)
+  - `bundle exec reek`
+  - `bundle exec flog --score`
+  - `bundle exec flay --summary`
 - run example
   - `ruby ...`
 - run interactive
@@ -36,10 +43,10 @@ One other issue on which I'm torn is code review. I've been using AI to review e
 - [x] ci - submission zip package - something new for me, as a release
 - [x] tautology spec
 - [x] ci - tests
-- [ ] ci - version tests down to 3.0.x
-- [ ] quality: rubocop/audit/brakerman
-- [ ] quality: reek/flog/flay
-- [ ] ci - quality
+- [x] ci - version tests down to 3.2.x
+- [x] quality: rubocop/audit/brakerman
+- [x] quality: reek/flog/flay
+- [x] ci - quality
 - [ ] modularize: input processing - board managment / robot moves - tui
 - [ ] simulation of a robot moving on a 6x6 square grid - no obstructions.
 - [ ] Create a command-line application that reads in the following commands:

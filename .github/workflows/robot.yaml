@@ -15,8 +15,18 @@ jobs:
         bundler-cache: true
     - name: Run Tests
       run: bundle exec minitest tests
-    - name: Run QA Checks
-      run: ruby -e 'puts "hi, one day im going to grow up into a real simulation of quality assurance"'
+    - name: Rubocop
+      run: bundle exec rubocop
+    - name: Bundler Audit
+      run: bundle exec bundler-audit
+    - name: Brakeman
+      run: bundle exec brakeman . -A --no-pager --force
+    - name: Reek
+      run: bundle exec reek
+    - name: Flog
+      run: bundle exec flog --score
+    - name: Flay
+      run: bundle exec flay --summary
     - name: Run Minimum Stress Checks
       run: ruby -e 'puts "hi, one day im going to grow up into a real tiny stress test"'
 
