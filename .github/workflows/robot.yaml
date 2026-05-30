@@ -1,0 +1,45 @@
+name: Test and Package Robot
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ubuntu-latest
+        ruby: ['3.0', '3.2', '3.4', '4.0']
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Run Tests
+      run: ruby -e 'puts "hi, one day im going to grow up into a real test"'
+    - name: Run QA Checks
+      run: ruby -e 'puts "hi, one day im going to grow up into a real simulation of quality assurance"'
+    - name: Run Minimum Stress Checks
+      run: ruby -e 'puts "hi, one day im going to grow up into a real tiny stress test"'
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: Release of {{ github.ref }} tag. Link {{ html_url }}
+        draft: false
+        prerelease: false
+    - name: Zip Release
+      run: zip --recurse-paths release.zip . --exclude ".git/*"
+    - name: Upload Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./release.zip
+        asset_name: release.zip
+        asset_content_type: application/zip
+
