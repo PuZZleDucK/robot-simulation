@@ -15,7 +15,7 @@ One other issue on which I'm torn is code review. I've been using AI to review e
 
 ## Setup
 - Developed and tested locally on ruby 3.2.3.
-- Supports ruby 3.0.x - 4.0.x based on ci coverage.
+- Supports ruby 3.2.x - 4.0.x based on ci coverage.
 - setup minitest
   - `bundle install`
 
