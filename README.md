@@ -6,17 +6,23 @@ The problem specification did not mention it, so I'd like to address the elephan
 
 One other issue on which I'm torn is code review. I've been using AI to review every bit of code I've written professionally for several years, even since back in the early days of GPT3 it has been greatly beneficial to catch silly typos and obvious mistakes, and as their capabilities grow so do the benefits of a pair of AI eyes on the code. In order to properly adhere to my avoidance of AI I will refrain from this practice for this exercise, but I do kind of feel like it's borderline unprofessional to not have AI review my code.
 
-## Deployment
-- manually create a release to run the release step in github in addition to tests
+## CI and Deployment
+- Live pipeline status:
+  - [![Test and Package Robot](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml/badge.svg)](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml)
+- Releases: [https://github.com/PuZZleDucK/robot-simulation/releases](https://github.com/PuZZleDucK/robot-simulation/releases)
+- Manually create a release to run the release step in github in addition:
   - `git tag v1.0.0`
   - `git push origin v1.0.0`
-- Pipeline status: [![Test and Package Robot](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml/badge.svg)](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml)
-- Releases: [https://github.com/PuZZleDucK/robot-simulation/releases](https://github.com/PuZZleDucK/robot-simulation/releases)
+
+Pipeline verifies specs and qa in various ruby versions and additionally zips up a package for releases:
+
+![Pipeline screenshot](screenshots/pipeline.png)
+
 
 ## Setup
 - Developed and tested locally on ruby 3.2.3.
 - Supports ruby 3.2.x - 4.0.x based on ci coverage.
-- setup dependencies (minitest and qa tools)
+- setup dependencies (optional: minitest and qa tools only)
   - `bundle install`
 
 ## Running
@@ -29,10 +35,13 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
   - `bundle exec reek`
   - `bundle exec flog --score`
   - `bundle exec flay --summary`
+- or run all specs and qa on linux
+  - `./all-qa.sh`
 - run interactive
   - `bundle exec ruby src/simulate.rb`
-- run example
-  - `bundle exec ruby src/simulate.rb examples/example1.rob`
+- run examples
+  - `bundle exec ruby src/simulate.rb < examples/example1.rob`
+  - `bundle exec ruby src/simulate.rb < examples/example2.rob`
 
 
 ## Todo
@@ -48,29 +57,29 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [x] quality: reek/flog/flay
 - [x] ci - quality
 - [x] modularize: input processing - board managment / robot moves - tui
-- [ ] simulation of a robot moving on a 6x6 square grid - no obstructions.
-- [ ] Create a command-line application that reads in the following commands:
+- [x] simulation of a robot moving on a 6x6 square grid - no obstructions.
+- [x] Create a command-line application that reads in the following commands:
     - [x] PLACE X, Y, O
         - [x] PLACE X, Y, O will place the robot at position X, Y on the grid, with orientation O
         - [x] Orientations are N, E, S, W (for North, East, South and West)
         - [x] Position (0,0) on the grid is the south west (bottom left - inc up and inc right) corner
         - [x] First coordinate is along the East/West axis, the second coordinate is along the North/South axis.
         - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
-        - [ ] test invalid PLACE commands before valid PLACE - ignore first
+        - [x] test invalid PLACE commands before valid PLACE - ignore first
     - [x] MOVE
         - [x] MOVE will move the robot one step forward, in whichever direction it is currently facing
-        - [ ] is allowed to move freely on the grid within its limits. - need turn to test full field moves.
+        - [x] is allowed to move freely on the grid within its limits. - need turn to test full field moves.
         - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
     - [x] LEFT and RIGHT
         - [x] LEFT and RIGHT respectfully turn the robot 90° angle to the left or to the right.
     - [x] REPORT
         - [x] REPORT announces the position and orientation (X, Y, O) in any format (eg std out)
-    - [ ] Commands are to be ignored until a valid PLACE command is issued
-    - [ ] all other commands (including another PLACE) are to be obeyed
-- [ ] example case 1
-- [ ] example case 2
-- [ ] example suite and ci/qa run all examples
-- [ ] instruction on how to run what you provide, but do not expect infrastructure.
+    - [x] Commands are to be ignored until a valid PLACE command is issued
+    - [x] all other commands (including another PLACE) are to be obeyed
+- [x] example case 1
+- [x] example case 2
+- [x] example suite and ci/qa run all examples
+- [x] instruction on how to run what you provide, but do not expect infrastructure.
 - [ ] cleanup readme and prepare submission
 - [ ] bonus: test tooling - ai reviews
 - [ ] bonus: customer-focused ui: accept multiple scripts (--scripts .../your-examples/.*)

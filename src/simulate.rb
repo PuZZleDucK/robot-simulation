@@ -10,8 +10,8 @@ if ARGV.empty?
   until input_line.empty?
     input_line = gets.chomp
     command = StringProcessor.parse(input_line)
-    robot_field.simulate(command)
-    # puts response unless response.empty?
+    response = robot_field.simulate(command)
+    puts response unless response.to_s.empty?
   end
 else
   puts 'Process files'

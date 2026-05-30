@@ -10,7 +10,7 @@ class StringProcessor
   }.freeze
 
   def self.parse(string)
-    components = string.split
+    components = string.gsub(',', ' ').split
     command = case components[0]
               when 'MOVE'
                 :move

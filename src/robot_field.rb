@@ -27,7 +27,7 @@ class RobotField
     when :right
       right
     when :report
-      "(#{hori}, #{vert}, #{dir.upcase})"
+      "#{hori},#{vert},#{dir.upcase}" unless dir.nil?
     else
       place(command) if command[0] == :place
     end
@@ -44,6 +44,7 @@ class RobotField
     @hori = hori
     @vert = vert
     @dir = dir
+    nil
   end
 
   def move
@@ -57,13 +58,20 @@ class RobotField
     when :w
       @hori -= 1 if hori.positive?
     end
+    nil
   end
 
   def left
+    return if dir.nil?
+
     @dir = DIRECTIONS.key((DIRECTIONS[dir] - 1) % 4)
+    nil
   end
 
   def right
+    return if dir.nil?
+
     @dir = DIRECTIONS.key((DIRECTIONS[dir] + 1) % 4)
+    nil
   end
 end

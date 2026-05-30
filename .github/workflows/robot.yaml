@@ -27,8 +27,8 @@ jobs:
       run: bundle exec flog --score
     - name: Flay
       run: bundle exec flay --summary
-    - name: Run Minimum Stress Checks
-      run: ruby -e 'puts "hi, one day im going to grow up into a real tiny stress test"'
+    - name: Run Examples
+      run: ./all-examples.sh
 
   release:
     needs: test

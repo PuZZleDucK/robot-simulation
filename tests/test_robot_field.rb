@@ -108,7 +108,7 @@ describe RobotField do
       assert_nil(subject.hori)
       assert_nil(subject.vert)
       assert_nil(subject.dir)
-    end    
+    end
   end
 
   describe 'MOVE' do
@@ -119,7 +119,7 @@ describe RobotField do
       _(subject.hori).must_equal 0
       _(subject.vert).must_equal 1
       _(subject.dir).must_equal :n
-    end    
+    end
 
     it 'move from bottom left facing east moves right' do
       subject = RobotField.new
@@ -128,7 +128,7 @@ describe RobotField do
       _(subject.hori).must_equal 1
       _(subject.vert).must_equal 0
       _(subject.dir).must_equal :e
-    end    
+    end
 
     it 'move from top right facing south moves down' do
       subject = RobotField.new
@@ -137,7 +137,7 @@ describe RobotField do
       _(subject.hori).must_equal 5
       _(subject.vert).must_equal 4
       _(subject.dir).must_equal :s
-    end    
+    end
 
     it 'move from top right facing west moves left' do
       subject = RobotField.new
@@ -146,7 +146,7 @@ describe RobotField do
       _(subject.hori).must_equal 4
       _(subject.vert).must_equal 5
       _(subject.dir).must_equal :w
-    end    
+    end
 
     it 'move from bottom left facing south does not move' do
       subject = RobotField.new
@@ -155,7 +155,7 @@ describe RobotField do
       _(subject.hori).must_equal 0
       _(subject.vert).must_equal 0
       _(subject.dir).must_equal :s
-    end    
+    end
 
     it 'move from bottom left facing west does not move' do
       subject = RobotField.new
@@ -164,7 +164,7 @@ describe RobotField do
       _(subject.hori).must_equal 0
       _(subject.vert).must_equal 0
       _(subject.dir).must_equal :w
-    end    
+    end
 
     it 'move from top right facing north does not move' do
       subject = RobotField.new
@@ -173,7 +173,7 @@ describe RobotField do
       _(subject.hori).must_equal 5
       _(subject.vert).must_equal 5
       _(subject.dir).must_equal :n
-    end    
+    end
 
     it 'move from top right facing east does not move' do
       subject = RobotField.new
@@ -228,30 +228,122 @@ describe RobotField do
       subject = RobotField.new
       subject.simulate([:place, 0, 0, :n])
       output = subject.simulate(:report)
-      _(output).must_equal '(0, 0, N)'
+      _(output).must_equal '0,0,N'
     end
 
     it 'facing west in top right reports (5, 5, W)' do
       subject = RobotField.new
       subject.simulate([:place, 5, 5, :w])
       output = subject.simulate(:report)
-      _(output).must_equal '(5, 5, W)'
+      _(output).must_equal '5,5,W'
     end
 
     it 'facing south in bottom right reports (5, 0, S)' do
       subject = RobotField.new
       subject.simulate([:place, 5, 0, :s])
       output = subject.simulate(:report)
-      _(output).must_equal '(5, 0, S)'
+      _(output).must_equal '5,0,S'
     end
 
     it 'facing east in top left reports (0, 5, E)' do
       subject = RobotField.new
       subject.simulate([:place, 0, 5, :e])
       output = subject.simulate(:report)
-      _(output).must_equal '(0, 5, E)'
+      _(output).must_equal '0,5,E'
     end
   end
 
+  describe 'Compound commands' do
+    it 'Traverses the field' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :n])
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:right)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      subject.simulate(:move)
+      _(subject.hori).must_equal 5
+      _(subject.vert).must_equal 5
+      _(subject.dir).must_equal :e
+    end
 
+    it 'ignores invalid place commands' do
+      subject = RobotField.new
+      subject.simulate([:place, 6, 0, :n])
+
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+
+      subject.simulate([:place, -1, 0, :n])
+
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+
+      subject.simulate([:place, 0, 6, :n])
+
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+
+      subject.simulate([:place, 6, 0, :z])
+
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+
+      subject.simulate([:place, 0, 0, :n])
+
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :n
+    end
+
+    it 'ignores move, trun and report commands before valid place' do
+      subject = RobotField.new
+      subject.simulate(:move)
+      subject.simulate(:left)
+      subject.simulate(:right)
+      invalid_report_output = subject.simulate(:report)
+
+      assert_nil(subject.hori)
+      assert_nil(subject.vert)
+      assert_nil(subject.dir)
+      assert_nil(invalid_report_output)
+
+      subject.simulate([:place, 0, 0, :n])
+
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :n
+    end
+
+    it 'accepts multiple place commands' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :n])
+
+      _(subject.hori).must_equal 0
+      _(subject.vert).must_equal 0
+      _(subject.dir).must_equal :n
+
+      subject.simulate([:place, 3, 2, :e])
+
+      _(subject.hori).must_equal 3
+      _(subject.vert).must_equal 2
+      _(subject.dir).must_equal :e
+
+      subject.simulate([:place, 5, 5, :w])
+
+      _(subject.hori).must_equal 5
+      _(subject.vert).must_equal 5
+      _(subject.dir).must_equal :w
+    end
+  end
 end
