@@ -7,6 +7,9 @@ The problem specification did not mention it, so I'd like to address the elephan
 One other issue on which I'm torn is code review. I've been using AI to review every bit of code I've written professionally for several years, even since back in the early days of GPT3 it has been greatly beneficial to catch silly typos and obvious mistakes, and as their capabilities grow so do the benefits of a pair of AI eyes on the code. In order to properly adhere to my avoidance of AI I will refrain from this practice for this exercise, but I do kind of feel like it's borderline unprofessional to not have AI review my code.
 
 ## Deployment
+- manually create a release
+  - `git tag v1.0.0`
+  - `git push origin v1.0.0`
 - placeholder for link to pipeline
 - placeholder for release zip link
 
@@ -49,7 +52,7 @@ One other issue on which I'm torn is code review. I've been using AI to review e
     - [ ] LEFT and RIGHT
         - [ ] LEFT and RIGHT respectfully turn the robot 90° angle to the left or to the right.
     - [ ] REPORT
-        - [ ] REPORT announces the position and orientation of the robot (X, Y, O) in any format (eg std out)
+        - [ ] REPORT announces the position and orientation (X, Y, O) in any format (eg std out)
     - [ ] Commands are to be ignored until a valid PLACE command is issued
     - [ ] all other commands (including another PLACE) are to be obeyed
 - [ ] example case 1
@@ -100,3 +103,7 @@ bonuses are nice to haves and might be done after core project. extentions are n
     - move to wall and stop
     - reject command as invalid and not move
     - continue with the rest of the commands after collision or abort
+- behaviour of REPORT without placement is unspecified
+  - "X, Y, O" -> ", , " - not a great user experience
+  - "X, Y, O" -> "-, -, -" - better, and follows the normal output format
+  - "X, Y, O" -> "Error: Robot not placed" - even better feedback but breaks output format (std err)
