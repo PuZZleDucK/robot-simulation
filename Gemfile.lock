@@ -90,6 +90,9 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rspec (3.6.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
     sexp_processor (4.17.5)
     thor (1.5.0)
@@ -111,6 +114,7 @@ DEPENDENCIES
   reek
   rubocop
   rubocop-minitest
+  rubocop-rspec
 
 BUNDLED WITH
    2.7.2
