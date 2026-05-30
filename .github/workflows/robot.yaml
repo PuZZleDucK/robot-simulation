@@ -27,7 +27,7 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: Release of {{ github.ref }} tag. Link {{ html_url }}
+        body: Release of {{ github.ref }} tag.
         draft: false
         prerelease: false
     - name: Zip Release
