@@ -7,20 +7,25 @@ The problem specification did not mention it, so I'd like to address the elephan
 One other issue on which I'm torn is code review. I've been using AI to review every bit of code I've written professionally for several years, even since back in the early days of GPT3 it has been greatly beneficial to catch silly typos and obvious mistakes, and as their capabilities grow so do the benefits of a pair of AI eyes on the code. In order to properly adhere to my avoidance of AI I will refrain from this practice for this exercise, but I do kind of feel like it's borderline unprofessional to not have AI review my code.
 
 ## Deployment
-- manually create a release
+- manually create a release to run the release step in github in addition to tests
   - `git tag v1.0.0`
   - `git push origin v1.0.0`
-- placeholder for link to pipeline
-- placeholder for release zip link
+- Pipeline status: [![Test and Package Robot](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml/badge.svg)](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml)
+- Releases: [https://github.com/PuZZleDucK/robot-simulation/releases](https://github.com/PuZZleDucK/robot-simulation/releases)
 
 ## Setup
-- Developed and tested locally on ruby 3.2.3 but should support ruby 3.0.x - 4.0.x based on ci coverage.
-- todo bundle for minitest
+- Developed and tested locally on ruby 3.2.3.
+- Supports ruby 3.0.x - 4.0.x based on ci coverage.
+- setup minitest
+  - `bundle install`
 
 ## Running
 - run specs
+  - `bundle exec minitest tests`
 - run example
+  - `ruby ...`
 - run interactive
+  - `ruby ...`
 
 
 ## Todo
@@ -28,9 +33,9 @@ One other issue on which I'm torn is code review. I've been using AI to review e
 - [x] license
 - [x] prioritize and organize todos
 - [x] asdf and .ruby-version
-- [ ] ci - submission zip package - something new for me, as a release
-- [ ] tautology spec
-- [ ] ci - tests
+- [x] ci - submission zip package - something new for me, as a release
+- [x] tautology spec
+- [x] ci - tests
 - [ ] ci - version tests down to 3.0.x
 - [ ] quality: rubocop/audit/brakerman
 - [ ] quality: reek/flog/flay
