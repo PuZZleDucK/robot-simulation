@@ -18,4 +18,5 @@ Metrics/MethodLength:
 
 plugins:
   - rubocop-minitest
+  - rubocop-rspec
 
