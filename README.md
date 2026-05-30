@@ -63,8 +63,8 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
         - [x] robot needs to be prevented from exceeding the limits of the grid - ignore invalid
     - [x] LEFT and RIGHT
         - [x] LEFT and RIGHT respectfully turn the robot 90° angle to the left or to the right.
-    - [ ] REPORT
-        - [ ] REPORT announces the position and orientation (X, Y, O) in any format (eg std out)
+    - [x] REPORT
+        - [x] REPORT announces the position and orientation (X, Y, O) in any format (eg std out)
     - [ ] Commands are to be ignored until a valid PLACE command is issued
     - [ ] all other commands (including another PLACE) are to be obeyed
 - [ ] example case 1

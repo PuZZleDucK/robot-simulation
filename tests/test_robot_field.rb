@@ -222,4 +222,36 @@ describe RobotField do
       _(subject.dir).must_equal :n
     end
   end
+
+  describe 'REPORT' do
+    it 'facing north in bottom left reports (0, 0, N)' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 0, :n])
+      output = subject.simulate(:report)
+      _(output).must_equal '(0, 0, N)'
+    end
+
+    it 'facing west in top right reports (5, 5, W)' do
+      subject = RobotField.new
+      subject.simulate([:place, 5, 5, :w])
+      output = subject.simulate(:report)
+      _(output).must_equal '(5, 5, W)'
+    end
+
+    it 'facing south in bottom right reports (5, 0, S)' do
+      subject = RobotField.new
+      subject.simulate([:place, 5, 0, :s])
+      output = subject.simulate(:report)
+      _(output).must_equal '(5, 0, S)'
+    end
+
+    it 'facing east in top left reports (0, 5, E)' do
+      subject = RobotField.new
+      subject.simulate([:place, 0, 5, :e])
+      output = subject.simulate(:report)
+      _(output).must_equal '(0, 5, E)'
+    end
+  end
+
+
 end

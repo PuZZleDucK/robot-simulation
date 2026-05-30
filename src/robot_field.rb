@@ -26,6 +26,8 @@ class RobotField
       left
     when :right
       right
+    when :report
+      "(#{hori}, #{vert}, #{dir.upcase})"
     else
       place(command) if command[0] == :place
     end

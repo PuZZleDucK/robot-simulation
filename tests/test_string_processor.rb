@@ -80,4 +80,9 @@ describe StringProcessor do
     end
   end
 
+  describe 'REPORT' do
+    it 'Parses REPORT to :report' do
+      _(StringProcessor.parse('REPORT')).must_equal :report
+    end
+  end
 end

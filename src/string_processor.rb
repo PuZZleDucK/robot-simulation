@@ -18,6 +18,8 @@ class StringProcessor
                 :left
               when 'RIGHT'
                 :right
+              when 'REPORT'
+                :report
               when 'PLACE'
                 hori = safe_to_i(components[1])
                 vert = safe_to_i(components[2])
