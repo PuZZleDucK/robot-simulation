@@ -1,0 +1,5 @@
+PLACE 0,0,E
+MOVE
+REPORT
+
+Output: 1,0,E

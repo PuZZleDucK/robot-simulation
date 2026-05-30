@@ -1,0 +1,8 @@
+PLACE 0,0,N
+MOVE
+MOVE
+RIGHT
+MOVE
+REPORT
+
+Output: 1,2,E

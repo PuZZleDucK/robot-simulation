@@ -29,10 +29,10 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
   - `bundle exec reek`
   - `bundle exec flog --score`
   - `bundle exec flay --summary`
-- run example
-  - `ruby ...`
 - run interactive
-  - `ruby ...`
+  - `bundle exec ruby src/simulate.rb`
+- run example
+  - `bundle exec ruby src/simulate.rb examples/example1.rob`
 
 
 ## Todo
@@ -47,7 +47,7 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [x] quality: rubocop/audit/brakerman
 - [x] quality: reek/flog/flay
 - [x] ci - quality
-- [ ] modularize: input processing - board managment / robot moves - tui
+- [x] modularize: input processing - board managment / robot moves - tui
 - [ ] simulation of a robot moving on a 6x6 square grid - no obstructions.
 - [ ] Create a command-line application that reads in the following commands:
     - [ ] PLACE X, Y, O
@@ -78,6 +78,8 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [ ] bonus: more example scripts
 - [ ] bonus: test tooling - ui/visualizer
 - [ ] bonus: testing: stress/bench tests - explore limits on given hardware
+- [ ] bonus: testing: coverage
+- [ ] bonus: gem for releases
 - [ ] extention: integration - accept url link to script
 - [ ] extention: interactive ui and script save
 - [ ] extention: other board sizes
@@ -89,23 +91,6 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [ ] abstract consideration: agility and reliability
 - [ ] abstract consideration: logistics-related challenges (job allocation / route optimisation)
 bonuses are nice to haves and might be done after core project. extentions are nice to think about but not in scope. abstract considerations are mostly unwritten or wholistic concerns that inspire other more concrete tasks.
-
-## Examples
-
-### Example 1
-- PLACE 0,0,E
-- MOVE
-- REPORT
-  - Output: 1,0,E
-
-### Example 2
-- PLACE 0,0,N
-- MOVE
-- MOVE
-- RIGHT
-- MOVE
-- REPORT
-  - Output: 1,2,E
 
 ## Ambiguities / Issues / Concerns
 - professional, but also demonstration
@@ -119,3 +104,8 @@ bonuses are nice to haves and might be done after core project. extentions are n
   - "X, Y, O" -> ", , " - not a great user experience
   - "X, Y, O" -> "-, -, -" - better, and follows the normal output format
   - "X, Y, O" -> "Error: Robot not placed" - even better feedback but breaks output format (std err)
+- example file format - list of commands - blank line - expected output
+- no examples cover a program with no report line - allow and print no output
+- no examples cover a program with multiple report lines - allow and print one per line
+- allow lenient input mode (lowercase commands, other spacing)
+- allow alternate report formats? (compact, verbose, map)
