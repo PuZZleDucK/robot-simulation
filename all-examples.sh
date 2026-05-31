@@ -8,3 +8,5 @@ if [[ "$output2" == "1,2,E" ]]; then
     echo "Example 2 pass"
 fi
 
+echo "All examples glob run - unchecked"
+bundle exec ruby src/simulate.rb examples/*

@@ -11,8 +11,8 @@ One other issue on which I'm torn is code review. I've been using AI to review e
   - [![Test and Package Robot](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml/badge.svg)](https://github.com/PuZZleDucK/robot-simulation/actions/workflows/robot.yaml)
 - Releases: [https://github.com/PuZZleDucK/robot-simulation/releases](https://github.com/PuZZleDucK/robot-simulation/releases)
 - Manually create a release to run the release step in github in addition:
-  - `git tag v1.0.0`
-  - `git push origin v1.0.0`
+  - `git tag v2.0.0`
+  - `git push origin v2.0.0`
 
 Pipeline verifies specs and qa in various ruby versions and additionally zips up a package for releases:
 
@@ -26,6 +26,9 @@ I just used Minitest and simplecov for testing. Additional tests covering the cl
 Additionally a collection of my favorite qa tools like rubocop, reek, flog and flay review each commit and highlight smells like antipaterns, repetition, high complexity and security issues.
 
 Stress tests reveal some potential issues, but even with 10 million itterations the test completes in less than a tenth of a second, so the performance requirements would have to be pretty outragious to justify a deeper investigation into performance. That being said it does concern me a little that the stress tests only keep to the expected scaling on about every second run with a really low threashold, if I thought it was worth persuing I'd next isolate each command and bench that independantly and hopefully one would stick out as the culprit.
+
+## TUI
+I've always wanted to make a visual frontend for one of these projects, but there is really no point other than a bit of fun. One of the reasons I put it in the checklist is so I can keep de-prioritizing it until I get to about this stage and realize it's a big gamble for something that was not asked for and time is starting to tick down. So there is no tui or visualizing of the field and all the other ideas and nice to haves that are way out of scope can go on the backlog for next time. So this is where the rambling preamble stops and the real readme kicks in.
 
 ## Setup
 - Developed and tested locally on ruby 3.2.3.
@@ -49,9 +52,12 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
   - `./all-qa.sh`
 - run interactive
   - `bundle exec ruby src/simulate.rb`
-- run examples
+- run examples by piping content
   - `bundle exec ruby src/simulate.rb < examples/example1.rob`
-  - `bundle exec ruby src/simulate.rb < examples/example2.rob`
+- run examples by passing file name
+  - `bundle exec ruby src/simulate.rb examples/example2.rob`
+- run examples by passing glob
+  - `bundle exec ruby src/simulate.rb examples/*`
 
 
 ## Todo
@@ -94,21 +100,20 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [x] bonus: customer-focused ui: accept multiple scripts (.../your-examples/.*)
 - [x] bonus: testing: coverage
 - [x] bonus: testing: stress/bench tests - explore limits on given hardware
-- [ ] bonus: more example scripts
+- [x] bonus: more example scripts
 - [-] bonus: gem for releases - meh, it's a fancy zip - already covered in ci
-- [ ] bonus: visualize - tui
-- [ ] bonus: test tooling - ui/visualizer
-- [ ] extention: integration - accept url link to script
-- [ ] extention: interactive ui and script save
-- [ ] extention: other board sizes - borderline out of scope, but just needs to wire up initializer
+- [-] bonus: visualize - tui - ui/visualizer
+- [-] extention: integration - accept url link to script
+- [-] extention: interactive ui and script save
+- [-] extention: other board sizes - borderline out of scope, but just needs to wire up initializer
 - [-] extention: walls, pushers, etc - way too out of scope
-- [ ] cleanup readme and prepare submission
-- [ ] abstract consideration: as this was production code - except as specified
-- [ ] abstract consideration: multiple services and platforms - tool-agnostic
-- [ ] abstract consideration: architecture decisions and product direction
-- [ ] abstract consideration: customer-focused mindset - usability
-- [ ] abstract consideration: agility and reliability
-- [ ] abstract consideration: logistics-related challenges (job allocation / route optimisation)
+- [x] abstract consideration: as this was production code - except as specified - if anything over qa'd
+- [x] abstract consideration: multiple services and platforms - tool-agnostic - multiple components
+- [x] abstract consideration: architecture decisions and product direction - modular and testable
+- [x] abstract consideration: customer-focused mindset - usability - user amenities like file/glob inputs
+- [x] abstract consideration: agility and reliability - plans change and project scope still acomplished
+- [-] abstract consideration: logistics-related challenges (job allocation / route optimisation) - didn't really work that one in
+- [x] cleanup readme and prepare submission
 bonuses are nice to haves and might be done after core project. extentions are nice to think about but not in scope. abstract considerations are mostly unwritten or wholistic concerns that inspire other more concrete tasks.
 
 ## Ambiguities / Issues / Concerns
@@ -130,3 +135,4 @@ bonuses are nice to haves and might be done after core project. extentions are n
 - allow alternate report formats? (compact, verbose, map)
 - invalid dir not explicitly addressed - consider invalid and nop
 - disabled rubocop in ci, taking a long time and getting odd output like "Inspecting 3393 files" and including a vendor dir
+- assumed blank link was a program terminator based on examples, but perhaps eof would be more robust
