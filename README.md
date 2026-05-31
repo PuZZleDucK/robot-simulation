@@ -81,14 +81,14 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [x] example suite and ci/qa run all examples
 - [x] instruction on how to run what you provide, but do not expect infrastructure.
 - [ ] cleanup readme and prepare submission
-- [ ] bonus: test tooling - ai reviews
-- [ ] bonus: customer-focused ui: accept multiple scripts (--scripts .../your-examples/.*)
-- [ ] bonus: visualize - tui
-- [ ] bonus: more example scripts
-- [ ] bonus: test tooling - ui/visualizer
-- [ ] bonus: testing: stress/bench tests - explore limits on given hardware
+- [-] bonus: test tooling - ai reviews - meh, code rabbit and friends already exist
+- [x] bonus: customer-focused ui: accept multiple scripts (.../your-examples/.*)
 - [ ] bonus: testing: coverage
-- [ ] bonus: gem for releases
+- [ ] bonus: more example scripts
+- [-] bonus: gem for releases - meh, it's a fancy zip - already covered in ci
+- [ ] bonus: testing: stress/bench tests - explore limits on given hardware
+- [ ] bonus: visualize - tui
+- [ ] bonus: test tooling - ui/visualizer
 - [ ] extention: integration - accept url link to script
 - [ ] extention: interactive ui and script save
 - [ ] extention: other board sizes
