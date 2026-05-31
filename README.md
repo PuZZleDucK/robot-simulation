@@ -19,11 +19,13 @@ Pipeline verifies specs and qa in various ruby versions and additionally zips up
 ![Pipeline screenshot](screenshots/pipeline.png)
 
 ## Testing and Coverage
-I just used Minitest and simplecov for testing. Additional tests covering the cli are not included in coverage but are more like integration tests above the unit tests ensuring the applications performance from a user interface perspective. Idealy there would be a floor of something like 70-80% for coverage as a gate in the ci pipeline. 100% is almost certainly never required, but it's kinda nice when you have it :D.
+I just used Minitest and simplecov for testing. Additional tests covering the cli are not included in coverage but are more like integration tests above the unit tests ensuring the applications performance from a user interface perspective. Idealy there would be a floor of something like 70-80% for coverage as a gate in the ci pipeline. 100% is almost certainly never required, but it's kinda nice when you have it :D. Would also be nice to save artifact and publish link to latest coverage report as a comment in the pr thread.
 
 ![Pipeline screenshot](screenshots/coverage.png)
 
 Additionally a collection of my favorite qa tools like rubocop, reek, flog and flay review each commit and highlight smells like antipaterns, repetition, high complexity and security issues.
+
+Stress tests reveal some potential issues, but even with 10 million itterations the test completes in less than a tenth of a second, so the performance requirements would have to be pretty outragious to justify a deeper investigation into performance. That being said it does concern me a little that the stress tests only keep to the expected scaling on about every second run with a really low threashold, if I thought it was worth persuing I'd next isolate each command and bench that independantly and hopefully one would stick out as the culprit.
 
 ## Setup
 - Developed and tested locally on ruby 3.2.3.
@@ -35,6 +37,7 @@ Additionally a collection of my favorite qa tools like rubocop, reek, flog and f
 - run specs and qa
   - `bundle exec ruby -rsimplecov -S minitest tests`
   - or without coverage: `bundle exec ruby minitest tests`
+  - stress tests run separately: `bundle exec minitest tests/stress_tests.rb`
   - `bundle exec rubocop --autocorrect`
   - `bundle exec bundler-audit`
   - `bundle exec brakeman . -A --no-pager --force`
@@ -90,7 +93,7 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [-] bonus: test tooling - ai reviews - meh, code rabbit and friends already exist
 - [x] bonus: customer-focused ui: accept multiple scripts (.../your-examples/.*)
 - [x] bonus: testing: coverage
-- [ ] bonus: testing: stress/bench tests - explore limits on given hardware
+- [x] bonus: testing: stress/bench tests - explore limits on given hardware
 - [ ] bonus: more example scripts
 - [-] bonus: gem for releases - meh, it's a fancy zip - already covered in ci
 - [ ] bonus: visualize - tui
