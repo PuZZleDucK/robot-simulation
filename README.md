@@ -18,6 +18,12 @@ Pipeline verifies specs and qa in various ruby versions and additionally zips up
 
 ![Pipeline screenshot](screenshots/pipeline.png)
 
+## Testing and Coverage
+I just used Minitest and simplecov for testing. Additional tests covering the cli are not included in coverage but are more like integration tests above the unit tests ensuring the applications performance from a user interface perspective. Idealy there would be a floor of something like 70-80% for coverage as a gate in the ci pipeline. 100% is almost certainly never required, but it's kinda nice when you have it :D.
+
+![Pipeline screenshot](screenshots/coverage.png)
+
+Additionally a collection of my favorite qa tools like rubocop, reek, flog and flay review each commit and highlight smells like antipaterns, repetition, high complexity and security issues.
 
 ## Setup
 - Developed and tested locally on ruby 3.2.3.
@@ -27,7 +33,8 @@ Pipeline verifies specs and qa in various ruby versions and additionally zips up
 
 ## Running
 - run specs and qa
-  - `bundle exec minitest tests`
+  - `bundle exec ruby -rsimplecov -S minitest tests`
+  - or without coverage: `bundle exec ruby minitest tests`
   - `bundle exec rubocop --autocorrect`
   - `bundle exec bundler-audit`
   - `bundle exec brakeman . -A --no-pager --force`
@@ -80,19 +87,19 @@ optional qa steps - run in ci as non-blocking reporting steps (would report back
 - [x] example case 2
 - [x] example suite and ci/qa run all examples
 - [x] instruction on how to run what you provide, but do not expect infrastructure.
-- [ ] cleanup readme and prepare submission
 - [-] bonus: test tooling - ai reviews - meh, code rabbit and friends already exist
 - [x] bonus: customer-focused ui: accept multiple scripts (.../your-examples/.*)
-- [ ] bonus: testing: coverage
+- [x] bonus: testing: coverage
+- [ ] bonus: testing: stress/bench tests - explore limits on given hardware
 - [ ] bonus: more example scripts
 - [-] bonus: gem for releases - meh, it's a fancy zip - already covered in ci
-- [ ] bonus: testing: stress/bench tests - explore limits on given hardware
 - [ ] bonus: visualize - tui
 - [ ] bonus: test tooling - ui/visualizer
 - [ ] extention: integration - accept url link to script
 - [ ] extention: interactive ui and script save
-- [ ] extention: other board sizes
-- [ ] extention: walls, pushers, etc
+- [ ] extention: other board sizes - borderline out of scope, but just needs to wire up initializer
+- [-] extention: walls, pushers, etc - way too out of scope
+- [ ] cleanup readme and prepare submission
 - [ ] abstract consideration: as this was production code - except as specified
 - [ ] abstract consideration: multiple services and platforms - tool-agnostic
 - [ ] abstract consideration: architecture decisions and product direction

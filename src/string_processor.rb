@@ -35,7 +35,3 @@ class StringProcessor
     nil
   end
 end
-
-# could take single line and process piecemiel
-# or
-# take multiline string from file and prossess in loop

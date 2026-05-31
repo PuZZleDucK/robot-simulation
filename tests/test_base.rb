@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
+require_relative 'test_helper.rb'
 
 describe 'Base cases' do
   describe 'cli runs' do

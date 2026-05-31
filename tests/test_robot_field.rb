@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
+require_relative 'test_helper.rb'
 require_relative '../src/robot_field'
 
 describe RobotField do

@@ -14,7 +14,7 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
     - name: Run Tests
-      run: bundle exec minitest tests
+      run: bundle exec ruby -rsimplecov -S minitest tests
     # - name: Rubocop
     #   run: bundle exec rubocop
     - name: Bundler Audit
